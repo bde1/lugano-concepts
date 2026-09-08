@@ -57,7 +57,6 @@
     "Architecture",
     "Privacy",
     "Use Cases",
-    "Docs",
   ];
   const SECTION_NAV_TARGETS = {
     architecture: "architecture",
@@ -855,15 +854,6 @@
     return item;
   };
 
-  const createDocsNavItem = (referenceItem) => {
-    const item = document.createElement("a");
-    item.href = "/docs";
-    item.textContent = "Docs";
-    item.className = referenceItem.className.toString();
-    item.dataset.lgxDocsNav = "true";
-    return item;
-  };
-
   const updateUseCasesNav = () => {
     const nav = document.querySelector("nav");
 
@@ -889,27 +879,6 @@
 
       const platformItem = children[platformItemIndex];
       container.insertBefore(createUseCasesNavItem(platformItem), platformItem);
-    });
-  };
-
-  const updateDocsNav = () => {
-    const nav = document.querySelector("nav");
-
-    if (!nav) {
-      return;
-    }
-
-    [...nav.querySelectorAll("div")].forEach((container) => {
-      const children = [...container.children];
-      const labels = children.map((child) => getNormalizedNavText(child).toLowerCase());
-      const platformItemIndex = labels.indexOf("platform");
-
-      if (platformItemIndex === -1 || labels.includes("docs")) {
-        return;
-      }
-
-      const platformItem = children[platformItemIndex];
-      container.insertBefore(createDocsNavItem(platformItem), platformItem.nextSibling);
     });
   };
 
@@ -963,11 +932,6 @@
       if (!itemsByLabel.has("use cases")) {
         const useCasesItem = createUseCasesNavItem(platformItem);
         itemsByLabel.set("use cases", useCasesItem);
-      }
-
-      if (!itemsByLabel.has("docs")) {
-        const docsItem = createDocsNavItem(platformItem);
-        itemsByLabel.set("docs", docsItem);
       }
 
       orderedLabels.forEach((label) => {
@@ -1808,7 +1772,6 @@
     updateCtas();
     updateApplyWebsiteField();
     updateUseCasesNav();
-    updateDocsNav();
     normalizeHeaderNavOrder();
     bindHeaderNavClickCapture();
     bindLogoHomeNav();
