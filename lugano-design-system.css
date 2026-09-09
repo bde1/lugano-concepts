@@ -1,6 +1,7 @@
 /*
  * Lugano editorial system — loaded after homepage-sections.css.
- * This file deliberately scopes itself away from the hero and its proof ledger.
+ * The ivory hero stays untouched; the verification ledger starts the midnight
+ * continuation below it.
  */
 
 :root {
@@ -847,13 +848,6 @@ footer a:focus-visible {
   color: var(--lugano-section-accent) !important;
 }
 
-#lugano-extra-sections .lgx-card-cipher-canvas,
-#lugano-extra-sections .lgx-cipher-ready:hover .lgx-card-cipher-canvas,
-#lugano-extra-sections .lgx-cipher-ready:focus-within .lgx-card-cipher-canvas {
-  opacity: 0 !important;
-  mix-blend-mode: normal !important;
-}
-
 #lugano-extra-sections .lgx-card-head {
   display: grid !important;
   grid-template-columns: auto minmax(0, 1fr) !important;
@@ -1278,6 +1272,385 @@ footer :where(.lgx-brand-mark-image, img[src*="logo"]) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/*
+ * Midnight continuation
+ *
+ * This final layer is deliberately confined to the rendered homepage and
+ * application route. It wins over the earlier editorial pass without changing
+ * the ivory hero, its artwork, or the separate docs and policy shells below.
+ */
+#root,
+#lugano-extra-sections {
+  --lugano-midnight: #091625;
+  --lugano-midnight-raised: #0d1e34;
+  --lugano-card: #13283f;
+  --lugano-ivory: #fcf2df;
+  --lugano-muted: #b6c5d7;
+  --lugano-soft-blue: #91b8ed;
+  --lugano-dark-rule: rgba(145, 184, 237, 0.2);
+  --lugano-dark-rule-strong: rgba(145, 184, 237, 0.38);
+}
+
+#root .lgx-root,
+#lugano-extra-sections {
+  background: var(--lugano-midnight) !important;
+}
+
+/* The ledger is the first dark chapter after the unchanged ivory panorama. */
+#root #lugano-proof-ledger {
+  border-color: var(--lugano-dark-rule) !important;
+  background: var(--lugano-midnight) !important;
+  color: var(--lugano-ivory) !important;
+}
+
+/* Center the verification statement above its full-width evidence ledger. */
+#root #lugano-proof-ledger .lgx-hero-ledger-shell {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(3.25rem, 5vw, 4.75rem);
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-heading {
+  position: static;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 38rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-kicker {
+  justify-content: center;
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root #lugano-proof-ledger h2 {
+  max-width: 100%;
+  text-align: center;
+  color: var(--lugano-ivory) !important;
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-list {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-list,
+#root #lugano-proof-ledger .lgx-hero-ledger-row {
+  border-color: var(--lugano-dark-rule) !important;
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-row {
+  color: var(--lugano-muted) !important;
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-index,
+#root #lugano-proof-ledger .lgx-hero-ledger-digest {
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root #lugano-proof-ledger .lgx-hero-ledger-label {
+  color: var(--lugano-muted) !important;
+}
+
+/* Alternating midnight chapters keep the long homepage legible without glass. */
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) {
+  --lugano-section-bg: var(--lugano-midnight) !important;
+  --lugano-section-ink: var(--lugano-ivory) !important;
+  --lugano-section-copy: var(--lugano-muted) !important;
+  --lugano-section-accent: var(--lugano-soft-blue) !important;
+  --lugano-section-panel: var(--lugano-card) !important;
+  --lugano-section-rule: var(--lugano-dark-rule) !important;
+  background: var(--lugano-section-bg) !important;
+}
+
+#root section.lgx-gradient-band:not(.lgx-hero-editorial):not(#lugano-proof-ledger),
+#lugano-extra-sections > section.lgx-gradient-band:not(#lugano-proof-ledger),
+#root section.lgx-why-now-section:not(.lgx-hero-editorial):not(#lugano-proof-ledger),
+#root #platform:not(.lgx-hero-editorial):not(#lugano-proof-ledger),
+#lugano-extra-sections > #private-agents:not(#lugano-proof-ledger),
+#root #cta:not(.lgx-hero-editorial):not(#lugano-proof-ledger) {
+  --lugano-section-bg: var(--lugano-midnight-raised) !important;
+}
+
+#root section.lgx-why-now-section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) {
+  padding: clamp(4.75rem, 8vw, 8rem) 0 !important;
+  background: var(--lugano-section-bg) !important;
+}
+
+#root section.lgx-why-now-section:not(.lgx-hero-editorial):not(#lugano-proof-ledger)::before {
+  background: none !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(h1, h2, h3, h4),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) :where(h2, h3, h4) {
+  color: var(--lugano-ivory) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(p, li, dd, dt, cite),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) :where(p, li, dd, dt, cite) {
+  color: var(--lugano-muted) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(h2, h3, h4) em,
+#lugano-extra-sections > section:not(#lugano-proof-ledger) :where(h2, h3, h4) em,
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(.bracket-label, .lgx-kicker, .lgx-product-surface, .lgx-model-spec, .lgx-model-note, .prop-num),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) :where(.bracket-label, .lgx-kicker, .lgx-product-surface, .lgx-model-spec, .lgx-model-note, .prop-num) {
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(.feature-card, .comparison-card, .prop-card, .stat-glass-card, .lgx-card),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) .lgx-card {
+  border-color: var(--lugano-dark-rule) !important;
+  background: var(--lugano-card) !important;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.12) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(.feature-card, .comparison-card, .prop-card, .stat-glass-card, .lgx-card):hover,
+#lugano-extra-sections > section:not(#lugano-proof-ledger) .lgx-card:hover {
+  border-color: var(--lugano-dark-rule-strong) !important;
+  background: var(--lugano-card) !important;
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.16) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(.feature-card, .comparison-card, .prop-card, .stat-glass-card, .lgx-card) :where(h3, h4, strong),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) .lgx-card :where(h3, h4, strong) {
+  color: var(--lugano-ivory) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(.feature-card, .comparison-card, .prop-card, .stat-glass-card, .lgx-card) :where(p, li, dd, dt),
+#lugano-extra-sections > section:not(#lugano-proof-ledger) .lgx-card :where(p, li, dd, dt) {
+  color: var(--lugano-muted) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) .icon-chip,
+#lugano-extra-sections .lgx-icon,
+#lugano-extra-sections .lgx-card:hover .lgx-icon {
+  border-color: var(--lugano-dark-rule) !important;
+  background: transparent !important;
+  color: var(--lugano-ivory) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) .icon-chip *,
+#lugano-extra-sections .lgx-icon :where(span, svg),
+#lugano-extra-sections .lgx-icon svg :where(path, circle, rect, line, polyline) {
+  color: var(--lugano-ivory) !important;
+  stroke: currentColor !important;
+}
+
+/* The trust-gap number is elevated, not a bright card within a dark section. */
+#root .lgx-why-now-stat {
+  border-color: var(--lugano-dark-rule-strong) !important;
+  background: var(--lugano-card) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16) !important;
+}
+
+#root .lgx-why-now-stat strong {
+  color: var(--lugano-ivory) !important;
+}
+
+#root .lgx-why-now-stat p {
+  color: var(--lugano-muted) !important;
+}
+
+#root .lgx-why-now-stat cite {
+  color: var(--lugano-soft-blue) !important;
+}
+
+/* The first post-hero evidence cards retain their hierarchy on the dark field. */
+#root section:has(.stat-glass-card) {
+  --lugano-section-bg: var(--lugano-midnight-raised) !important;
+}
+
+#root .stat-glass-card {
+  border-top-color: var(--lugano-soft-blue) !important;
+}
+
+#root .stat-glass-card :where(h3, strong, [class*="text-"]),
+#root .stat-glass-card > div:not(.icon-chip) {
+  color: var(--lugano-ivory) !important;
+}
+
+#root .stat-glass-card > div:last-child {
+  color: var(--lugano-soft-blue) !important;
+}
+
+/* Privacy remains a comparison, with every proof surface lifted from the field. */
+#root .lgx-live-privacy .comparison-card > :first-child,
+#root #privacy .comparison-card > :first-child,
+#root #privacy .lgx-tier-band,
+#root #privacy .lgx-tier-card,
+#root #privacy .lgx-tier-card.is-restricted {
+  border-color: var(--lugano-dark-rule) !important;
+}
+
+#root .lgx-live-privacy .comparison-card > .flex.items-center > p {
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root .lgx-live-privacy .comparison-card [style*="color"],
+#root .lgx-live-privacy .comparison-card :where(h3, h4, strong),
+#root .lgx-live-privacy .comparison-card [style*="font-family"]:first-child {
+  color: var(--lugano-ivory) !important;
+}
+
+#root #privacy .lgx-tier-card {
+  background: var(--lugano-card) !important;
+  color: var(--lugano-muted) !important;
+}
+
+#root #privacy .lgx-tier-card.is-restricted {
+  border-color: var(--lugano-dark-rule-strong) !important;
+  background: var(--lugano-midnight-raised) !important;
+  color: var(--lugano-ivory) !important;
+}
+
+/* Architecture keeps code-like proof readable within the alternating cadence. */
+#root #architecture > div {
+  background: var(--lugano-dark-rule) !important;
+}
+
+#root #architecture > div > .lgx-live-heading {
+  background: var(--lugano-section-bg) !important;
+}
+
+#root #architecture .prop-card {
+  background: var(--lugano-card) !important;
+}
+
+#root #architecture .prop-num,
+#root #architecture .hash-value,
+#root #architecture .attestation-receipt [style*="color"] {
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root section#architecture:not(.lgx-hero-editorial):not(#lugano-proof-ledger) .prop-num {
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root #architecture .attestation-receipt {
+  border-color: var(--lugano-dark-rule) !important;
+  background: rgba(145, 184, 237, 0.07) !important;
+  color: var(--lugano-muted) !important;
+}
+
+#root #architecture .receipt-line {
+  color: var(--lugano-muted) !important;
+}
+
+/* Platform steps retain a clear reading path without the original blue glass. */
+#root #platform .feature-card {
+  border-left-color: var(--lugano-soft-blue) !important;
+}
+
+#root #platform .feature-card + div [style*="background"] {
+  background: var(--lugano-soft-blue) !important;
+}
+
+#root #platform .feature-card + div path {
+  stroke: var(--lugano-soft-blue) !important;
+}
+
+/* Engravings remain their approved, unfiltered ivory panels inside dark cards. */
+#lugano-extra-sections #use-cases .lgx-card-media {
+  border-bottom-color: var(--lugano-dark-rule) !important;
+  background: var(--lugano-ivory) !important;
+}
+
+#lugano-extra-sections #use-cases .lgx-card-media img {
+  filter: none !important;
+}
+
+#lugano-extra-sections .lgx-card-body {
+  background: transparent !important;
+}
+
+#lugano-extra-sections .lgx-agent-list,
+#lugano-extra-sections .lgx-model-card dl,
+#lugano-extra-sections .lgx-model-card dl > div,
+#lugano-extra-sections .lgx-model-note {
+  border-color: var(--lugano-dark-rule) !important;
+}
+
+#lugano-extra-sections .lgx-model-card dd {
+  color: var(--lugano-ivory) !important;
+}
+
+/* Closing CTA and the hash-routed application share the same midnight finish. */
+#root #cta > .absolute {
+  background: none !important;
+}
+
+#root #cta a[href*="apply"],
+#root .apply-form button[type="submit"] {
+  border-color: var(--lugano-ivory) !important;
+  background: var(--lugano-ivory) !important;
+  color: var(--lugano-midnight) !important;
+}
+
+#root #cta a[href*="apply"]:hover,
+#root .apply-form button[type="submit"]:hover:not(:disabled) {
+  border-color: var(--lugano-soft-blue) !important;
+  background: transparent !important;
+  color: var(--lugano-ivory) !important;
+}
+
+#root .apply-form form > div,
+#root .apply-form > div {
+  border-color: var(--lugano-dark-rule) !important;
+  background: var(--lugano-card) !important;
+}
+
+#root .apply-form label {
+  color: var(--lugano-soft-blue) !important;
+}
+
+#root .apply-form input,
+#root .apply-form textarea,
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) input,
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) textarea {
+  border-color: var(--lugano-dark-rule-strong) !important;
+  background: var(--lugano-midnight-raised) !important;
+  color: var(--lugano-ivory) !important;
+}
+
+#root .apply-form input::placeholder,
+#root .apply-form textarea::placeholder {
+  color: var(--lugano-muted) !important;
+}
+
+#root .apply-form input:focus,
+#root .apply-form textarea:focus {
+  border-color: var(--lugano-soft-blue) !important;
+}
+
+#root section:not(.lgx-hero-editorial):not(#lugano-proof-ledger) :where(a, button, input, textarea):focus-visible,
+#lugano-extra-sections :where(a, button, input, textarea):focus-visible {
+  outline-color: var(--lugano-soft-blue) !important;
+}
+
+/* Footer only follows the homepage/application theme; docs and policy footers retain their own shell. */
+body:has(#root .lgx-hero-editorial) footer,
+body:has(#root .apply-form) footer {
+  border-top-color: var(--lugano-dark-rule) !important;
+  background: var(--lugano-midnight) !important;
+  color: var(--lugano-muted) !important;
+}
+
+body:has(#root .lgx-hero-editorial) footer button,
+body:has(#root .apply-form) footer button {
+  border-color: var(--lugano-dark-rule-strong) !important;
+  color: var(--lugano-ivory) !important;
+}
+
+body:has(#root .lgx-hero-editorial) footer button:hover,
+body:has(#root .apply-form) footer button:hover {
+  border-color: var(--lugano-soft-blue) !important;
+  background: rgba(145, 184, 237, 0.1) !important;
+  color: var(--lugano-ivory) !important;
 }
 
 /*

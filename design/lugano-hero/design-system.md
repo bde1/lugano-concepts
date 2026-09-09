@@ -1,25 +1,28 @@
 # Lugano editorial system
 
-The homepage uses warm paper and engraved cobalt to make a private-AI claim feel as inspectable as a Swiss technical document. The hero remains the visual source of truth; the below-hero system continues its palette without restyling the hero or its verification ledger.
+The homepage keeps the approved ivory engraving as its visual source of truth. Starting with the verification ledger, the rest of the homepage moves into a midnight technical environment: quiet, inspectable, and deliberately more focused than the panorama above it. The hero artwork and headline remain unchanged; the location caption is omitted. The verification heading is centered above a compact, 52rem ledger with all ten checks.
 
 ## Tokens
 
 | Purpose | Value |
 | --- | --- |
-| Paper | `#fcf2df` |
-| Deep ink | `#123a70` |
-| Cobalt | `#194987` |
-| Engraving accent | `#2552a0` |
-| Paper panel | `#fffaf0` |
-| Copy | `#31516e` |
+| Hero ivory | `#fcf2df` |
+| Midnight | `#091625` |
+| Raised midnight | `#0d1e34` |
+| Elevated card | `#13283f` |
+| Primary type | `#fcf2df` |
+| Body type | `#b6c5d7` |
+| Soft blue accent | `#91b8ed` |
 
 Use Instrument Serif for high-level claims and IBM Plex Sans for body copy. JetBrains Mono is reserved for labels, numbers, metadata, and proof-like details.
 
 ## Surface rhythm
 
-- Paper chapters carry explanatory material, diagrams, model detail, and use cases.
-- Cobalt chapters carry the problem, privacy comparison, platform sequence, private agents, and closing/application moment.
-- Panels are flat with thin rules and a 3–5px radius. Do not reintroduce glass effects, neon glows, broad gradient fills, or oversized rounded cards.
+- The verification ledger begins the dark continuation directly after the ivory hero.
+- Homepage and application chapters alternate midnight and raised-midnight surfaces so the reading path stays clear across the full page.
+- Cards use `#13283f`, thin soft-blue rules, and modest elevation. Do not reintroduce glass effects, neon glows, broad gradient fills, or oversized rounded cards.
+- Use-case engravings remain unfiltered ivory media panels inside their dark cards.
+- Scrambled-character canvas effects remain visible on card hover and keyboard focus, with the existing reduced-motion behavior.
 - Maintain 16px or larger body copy, generous chapter spacing, and clear keyboard focus outlines.
 
 ## Artwork
@@ -40,10 +43,10 @@ All four illustrations were created with the built-in image-generation tool. The
 
 ## Implementation map
 
-`lugano-design-system.css` is loaded after `homepage-sections.css`. It scopes all below-hero rules away from `.lgx-hero-editorial` and `#lugano-proof-ledger`, which remain hero-owned.
+`lugano-design-system.css` is loaded after `homepage-sections.css`. It leaves `.lgx-hero-editorial` hero-owned and uses `#lugano-proof-ledger` as the first dark continuation surface.
 
-It uses semantic IDs/classes instead of section position: `#privacy`, `#architecture`, `#platform`, `#cta`, `#use-cases`, `#private-agents`, and `#private-models`. The shared `#root nav` rules cover both the homepage and the hash-routed application view, including its mobile menu. The footer uses an inverse paper mark on cobalt; `logo-mark.svg` itself is a solid cobalt three-block mark on a 10% cobalt square.
+It uses semantic IDs/classes instead of section position: `#privacy`, `#architecture`, `#platform`, `#cta`, `#use-cases`, `#private-agents`, and `#private-models`. The shared ivory `#root nav` rules cover both the homepage and the hash-routed application view, including its mobile menu. The homepage/application footer closes in midnight; `logo-mark.svg` itself is a solid cobalt three-block mark on a 10% cobalt square.
 
-The same stylesheet is linked after the existing styles in `/docs/`, `/privacy/`, `/terms/`, and `/security/` so their source content stays untouched while their visual shells match.
+The same stylesheet is linked after the existing styles in `/docs/`, `/privacy/`, `/terms/`, and `/security/`; this dark continuation is scoped to the homepage/application surfaces and does not retheme those document and policy bodies.
 
 `/deck/` is an immediate DocSend redirect and has no local presentation shell to theme.

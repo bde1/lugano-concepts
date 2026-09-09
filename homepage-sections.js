@@ -1298,19 +1298,10 @@
     return artStage;
   };
 
-  const ensureHeroCaption = (heroContent) => {
-    let caption = heroContent.querySelector(":scope > [data-lugano-hero-caption='true']");
-
-    if (caption) {
-      return caption;
-    }
-
-    caption = document.createElement("div");
-    caption.className = "lgx-hero-caption";
-    caption.dataset.luganoHeroCaption = "true";
-    caption.innerHTML = `<span class="lgx-hero-location">Lugano, Switzerland</span>`;
-    heroContent.appendChild(caption);
-    return caption;
+  const removeHeroCaption = (heroContent) => {
+    heroContent
+      .querySelectorAll(":scope > [data-lugano-hero-caption='true']")
+      .forEach((caption) => caption.remove());
   };
 
   const updateHeroTypography = (hero) => {
@@ -1410,7 +1401,7 @@
       proofCard.classList.remove("lgx-cipher-ready");
     }
 
-    ensureHeroCaption(heroContent);
+    removeHeroCaption(heroContent);
   };
 
   const bindHeroRouteLifecycle = () => {
